@@ -1,7 +1,8 @@
 class Post < ActiveRecord::Base
 
-  def task_params
-    params.require(:post).permit(:title, :content)
-  end
+  validates :title, :content, :presence => true
+  validates :title, :length => { :minimum => 2 }
+  # validates :title, :uniqueness => true
+  validates :title, :uniqueness => { :message => "alredy takes"}
 
 end
